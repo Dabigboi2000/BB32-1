@@ -1,6 +1,6 @@
 # Introduction
-The final goal of this project is to run DOOM.
-Welcome to the open-source repository for the homebrew BB32-1 CPU. here you'll find all the documentation, bugs and software related to this project.
+
+Welcome to the open-source repository for the homebrew BB32-1 CPU. here you'll find all the documentation, bugs and software related to this project. The final goal of this project is to run DOOM.
 
 (disclaimer: this is my first GitHub Repo, so beware, it kinda sucks)
 
