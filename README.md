@@ -4,7 +4,7 @@ Welcome to the open-source repository for the homebrew BB32-1 CPU. here you'll f
 
 (disclaimer: this is my first GitHub Repo, so beware, it kinda sucks)
 
-The BB32-1 CPU is a 32-bit processor with a custom architecture. It has been a long-term passion project starting around mid 2025.
+The BB32-1 CPU is a 24-bit processor with a custom architecture. It has been a long-term passion project starting around mid 2025.
 
 # The plan
 To run DOOM on a totaly unique and custom CPU, there are a lot of steps to be take, and the first, most obvious step for anything like this, is to create a C interperator that runs precompiled C that has been converted into plain bytes. This ensures that no more assembly needs to be written then is needed, because assembly is insanely difficult to work with, especially one that was created by a teenager. Because the CPU is now able to run precompiled C scripts, it is possible to write a basic operating system kernel in C. Built into this kernel is a second C compiler that can run actual uncompiled C programs, which is the foundation for running other programs that arent built into the kernel. From here there are 3 paths:
