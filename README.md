@@ -1,10 +1,10 @@
 # Introduction
 
-Welcome to the open-source repository for the homebrew BB32-1 CPU. here you'll find all the documentation, bugs and software related to this project. The final goal of this project is to run DOOM.
+Welcome to the open-source repository for the homebrew BB24-1 CPU. here you'll find all the documentation, bugs and software related to this project. The final goal of this project is to run DOOM.
 
 (disclaimer: this is my first GitHub Repo, so beware, it kinda sucks)
 
-The BB32-1 CPU is a 24-bit processor with a custom architecture. It has been a long-term passion project starting around mid 2025.
+The BB24-1 CPU is a 24-bit processor with a custom architecture. It has been a long-term passion project starting around mid 2025.
 
 # The plan
 To run DOOM on a totaly unique and custom CPU, there are a lot of steps to be take, and the first, most obvious step for anything like this, is to create a C interperator that runs precompiled C that has been converted into plain bytes. This ensures that no more assembly needs to be written then is needed, because assembly is insanely difficult to work with, especially one that was created by a teenager. Because the CPU is now able to run precompiled C scripts, it is possible to write a basic operating system kernel in C. Built into this kernel is a second C compiler that can run actual uncompiled C programs, which is the foundation for running other programs that arent built into the kernel. From here there are 3 paths:
@@ -20,10 +20,10 @@ Path 3 is immediately out the window, as it literaly requres rebuilding it from 
 As of Writing this last section (16th January 2026), i have not decided yet on what method i will take as this is an extremely long way away from the amount of progress i have made so far.
 
 #  
-Beneath is the basics covering the architecture of the BB32-1 CPU.
+Beneath is the basics covering the architecture of the BB24-1 CPU.
 
 # ROM & RAM
-The BB32-1 CPU naitively supports up to 48 MiB of RAM (16m x 24) and 64 MiB of ROM (16m x 32), and an 8 way DIP switch located next to the RAM/ROM chip/s tells the CPU how much is availible, supporting a minimum of 32b x 64K. 
+The BB24-1 CPU naitively supports up to 48 MiB of RAM (16m x 24) and 64 MiB of ROM (16m x 32), and an 8 way DIP switch located next to the RAM/ROM chip/s tells the CPU how much is availible, supporting a minimum of 32b x 64K. 
 
 For initial testing of the CPU i decided to use 3 128k x 8 IS61C1024 CMOS STATIC RAM in parallel to get a total of 128k x 24, or 384 KiB, which is much less then the maximum 48 Mib, and is very likely to not be enough for DOOM.
 
@@ -31,43 +31,6 @@ For initial testing of the CPU i decided to use 3 128k x 8 IS61C1024 CMOS STATIC
 
 # Registers
 The CPU has 12 inbuilt 24-bit registers, split into 4 groups of 3. Each register in a group is either A, B or C, when you switch banks to another set of registers no data is changed, and it only changes the physical chip the CPU is reading.
-
-# Assembly
-Here is the basic custom assembly instruction set:
-
-(the A and B values in the following table are not to be confused with the registers A and B, they are only placeholders in this case)
-| Function | Operands | Type | Description | Extra Conditions |
-|---------|----------|------|-------------|------------------|
-| SET | A, B | Memory | Sets A to value B, where B is a register or value | N/A |
-| ADD | A, B | Arithmetic | Adds value B to A, where B is a register or value; outputs to register C | N/A |
-| SUB | A, B | Arithmetic | Subtracts value B from A, where B is a register or value; outputs to register C | N/A |
-| MUT | A, B | Arithmetic | Multiplies value B by A, where B is a register or value; outputs to register C | N/A |
-| DIV | A, B | Arithmetic | Divides A by value B, where B is a register or value; outputs to register C | N/A |
-| WRITE | A, B | Memory | Sets RAM address A to value B, where A and B are a register or value | N/A |
-| READ | A, B | Memory | Sets A to the value loaded from RAM address B, where B is a register or value | N/A |
-| IF | A, B | Conditional | If condition A is true, jump to address B | C = D, C > D, C < D, ZER, CAR, AND, OR, NOT, XOR |
-| IN | A, B | Input/Output | Sets A to the current state of input B, where B is a register or value | N/A |
-| OUT | A, B | Input/Output | Sets output A to value B | N/A |
-| JMP | A, 0 | Structure | Jumps to address A | N/A |
-| REG | A, 0 | Memory | Sets the address bank to A, where A is a register or value | N/A |
-| HLT | 0, 0 | Structure | Halts the program | N/A |
-
-This instruction set directly correlates to the binary loaded into ROM.
-Using the instruction SET C, 12 as an example:
-
-SET is encoded as 0000
-
-Register C is encoded as 10
-
-The value 12 is replaced with 11
-
-This means it points to the final 24 bits of the instruction, where the literal value of 12 is now stored:
-
-000000000000000000001100
-
-So the final 32-bit ROM address is:
-
-00001011000000000000000000001100
 
 # External Links
 Instruction set: https://docs.google.com/spreadsheets/d/1baC-FZuSKrdwAQvM--H7stg7DwzFx2tct_jAeBdvTPM/edit?usp=sharing
