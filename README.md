@@ -32,5 +32,8 @@ For initial testing of the CPU i decided to use 3 128k x 8 IS61C1024 CMOS STATIC
 # Registers
 The CPU has 12 inbuilt 24-bit registers, split into 4 groups of 3. Each register in a group is either A, B or C, when you switch banks to another set of registers no data is changed, and it only changes the physical chip the CPU is reading.
 
+# Videos
+Ep 1: https://youtu.be/PBGcp7Y7MXU?feature=shared
+
 # External Links
 Instruction set: https://docs.google.com/spreadsheets/d/1baC-FZuSKrdwAQvM--H7stg7DwzFx2tct_jAeBdvTPM/edit?usp=sharing
