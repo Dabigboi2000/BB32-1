@@ -1,0 +1,13 @@
+SET A,3;
+SET C,A;
+MOD C,2;
+SET B,0;
+IF C = B,8;
+MUT A,3;
+ADD A,1;
+JMP 9,9;
+DIV A,2;
+SET B,1;
+IF A = B,12;
+JMP 1,1;
+HLT 0,0;
